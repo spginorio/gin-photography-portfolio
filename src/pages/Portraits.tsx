@@ -2,8 +2,8 @@ import ImageGalleryPortraits from "../components/Portraits-images";
 
 function Portraits() {
   return (
-    <div className="flex flex-col justify-center items-center mt-10">
-      <h2 className="mb-8 font-open-sans text-[34px] text-gray-800">
+    <div className="flex flex-col justify-center items-center mt-12">
+      <h2 className="mb-4 font-open-sans text-[32px] text-gray-800">
         Camera Roll
       </h2>
       <div className="flex">

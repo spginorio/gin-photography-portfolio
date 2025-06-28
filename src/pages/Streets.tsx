@@ -3,7 +3,7 @@ import ImageGallery from "../components/Street-images";
 function Streets() {
   return (
     <div className="flex flex-col justify-center items-center mt-12">
-      <h2 className="mb-4 font-open-sans text-[24px] text-gray-800">
+      <h2 className="mb-6 font-open-sans text-[32px] text-gray-800">
         Camera Roll
       </h2>
       <div className="flex">

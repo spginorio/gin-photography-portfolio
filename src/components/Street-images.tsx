@@ -2,7 +2,7 @@ const ImageGallery = () => {
   const totalImages = 46;
 
   return (
-    <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 mx-4 sm:mx-8 lg:mx-60 mt-10">
+    <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 mx-4 sm:mx-8 lg:mx-60 mt-10">
       {Array.from({ length: totalImages }, (_, i) => {
         const imageNumber = i + 1;
         return (

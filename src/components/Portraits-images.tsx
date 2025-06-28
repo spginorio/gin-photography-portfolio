@@ -4,8 +4,8 @@ const ImageGalleryPortraits = () => {
   const totalImages = 60;
 
   return (
-    <div className="p-4">
-      <div className="gap-6 lg:gap-10 space-y-8 sm:space-y-8 lg:space-y-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 sm:p-6 md:p-6 lg:pt-15 lg:pr-15 lg:pl-15">
+    <div className="">
+      <div className="gap-6 lg:gap-10 space-y-8 sm:space-y-8 lg:space-y-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 mt-10 p-5 sm:p-6 md:p-6 lg:pt-15 lg:pr-15 lg:pl-15 sp-4">
         {Array.from({ length: totalImages }, (_, i) => {
           const imageNumber = i + 1;
           return (

@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Streets from "./pages/Streets";
 import Portraits from "./pages/Portraits";
 import About from "./pages/About";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -187,6 +188,7 @@ function Navigation() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />

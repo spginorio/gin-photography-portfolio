@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   NavLink,
+  ScrollRestoration,
 } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/Home";

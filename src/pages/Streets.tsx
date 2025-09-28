@@ -1,13 +1,17 @@
 import ImageGallery from "../components/Street-images";
 
-function Streets() {
+interface StreetsProps {
+  openModal: (imageUrl: string) => void;
+}
+
+function Streets({ openModal }: StreetsProps) {
   return (
     <div className="flex flex-col justify-center items-center mt-12">
       <h2 className="mb-6 font-open-sans text-[32px] text-gray-800">
         Camera Roll
       </h2>
       <div className="flex">
-        <ImageGallery />
+        <ImageGallery openModal={openModal} />
       </div>
       <a
         href="https://www.instagram.com/ginoriox"

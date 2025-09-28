@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   NavLink,
-  ScrollRestoration,
 } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/Home";
@@ -12,6 +11,9 @@ import Streets from "./pages/Streets";
 import Portraits from "./pages/Portraits";
 import About from "./pages/About";
 import ScrollToTop from "./components/ScrollToTop";
+import Modal from "./components/Modal";
+import { AnimatePresence } from "framer-motion";
+import AnimatedPage from "./components/AnimatedPage";
 
 function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -187,16 +189,45 @@ function Navigation() {
 }
 
 function App() {
+  const [modal, setModal] = useState({ isOpen: false, imageUrl: "" });
+
+  const openModal = (imageUrl: string) => {
+    setModal({ isOpen: true, imageUrl });
+  };
+
+  const closeModal = () => {
+    setModal({ isOpen: false, imageUrl: "" });
+  };
+
   return (
     <Router>
       <ScrollToTop />
       <Navigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/streets" element={<Streets />} />
-        <Route path="/portraits" element={<Portraits />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route
+            path="/"
+            element={<AnimatedPage><Home /></AnimatedPage>}
+          />
+          <Route
+            path="/streets"
+            element={<AnimatedPage><Streets openModal={openModal} /></AnimatedPage>}
+          />
+          <Route
+            path="/portraits"
+            element={<AnimatedPage><Portraits openModal={openModal} /></AnimatedPage>}
+          />
+          <Route
+            path="/about"
+            element={<AnimatedPage><About /></AnimatedPage>}
+          />
+        </Routes>
+      </AnimatePresence>
+      <Modal
+        isOpen={modal.isOpen}
+        onClose={closeModal}
+        imageUrl={modal.imageUrl}
+      />
     </Router>
   );
 }

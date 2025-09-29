@@ -16,6 +16,13 @@ const Modal: React.FC<ModalProps> = ({
   showPrevImage,
   showNextImage,
 }) => {
+  const handlers = useSwipeable({
+    onSwipedLeft: () => showNextImage(),
+    onSwipedRight: () => showPrevImage(),
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
@@ -35,13 +42,6 @@ const Modal: React.FC<ModalProps> = ({
   }, [isOpen, showPrevImage, showNextImage]);
   if (!isOpen) return null;
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => showNextImage(),
-    onSwipedRight: () => showPrevImage(),
-    preventScrollOnSwipe: true,
-    trackMouse: true,
-  });
-
   return (
     <div
       {...handlers}
@@ -59,7 +59,7 @@ const Modal: React.FC<ModalProps> = ({
         />
       </div>
 
-      <div className="flex items-center space-x-10 mt-8">
+      <div className="flex items-center space-x-10 mt-6">
         <button
           onClick={(e) => {
             e.stopPropagation();

@@ -284,14 +284,14 @@ function App() {
             }
           />
         </Routes>
+        <Modal
+          isOpen={modal.isOpen}
+          onClose={closeModal}
+          imageUrl={modal.imageUrl}
+          showNextImage={showNextImage}
+          showPrevImage={showPrevImage}
+        />
       </AnimatePresence>
-      <Modal
-        isOpen={modal.isOpen}
-        onClose={closeModal}
-        imageUrl={modal.imageUrl}
-        showNextImage={showNextImage}
-        showPrevImage={showPrevImage}
-      />
     </Router>
   );
 }

@@ -189,14 +189,52 @@ function Navigation() {
 }
 
 function App() {
-  const [modal, setModal] = useState({ isOpen: false, imageUrl: "" });
+  const [modal, setModal] = useState({
+    isOpen: false,
+    imageUrl: "",
+    imageUrls: [] as string[],
+    currentIndex: 0,
+  });
+  const [images, setImages] = useState<string[]>([]);
 
-  const openModal = (imageUrl: string) => {
-    setModal({ isOpen: true, imageUrl });
+  const openModal = (imageUrls: string[], index: number) => {
+    setModal({
+      isOpen: true,
+      imageUrl: imageUrls[index],
+      imageUrls,
+      currentIndex: index,
+    });
   };
 
   const closeModal = () => {
-    setModal({ isOpen: false, imageUrl: "" });
+    setModal({
+      isOpen: false,
+      imageUrl: "",
+      imageUrls: [],
+      currentIndex: 0,
+    });
+  };
+
+  const showNextImage = () => {
+    setModal((prev) => ({
+      ...prev,
+      currentIndex: (prev.currentIndex + 1) % prev.imageUrls.length,
+      imageUrl: prev.imageUrls[(prev.currentIndex + 1) % prev.imageUrls.length],
+    }));
+  };
+
+  const showPrevImage = () => {
+    setModal((prev) => ({
+      ...prev,
+      currentIndex:
+        (prev.currentIndex - 1 + prev.imageUrls.length) %
+        prev.imageUrls.length,
+      imageUrl:
+        prev.imageUrls[
+          (prev.currentIndex - 1 + prev.imageUrls.length) %
+            prev.imageUrls.length
+        ],
+    }));
   };
 
   return (
@@ -207,19 +245,43 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<AnimatedPage><Home /></AnimatedPage>}
+            element={
+              <AnimatedPage>
+                <Home />
+              </AnimatedPage>
+            }
           />
           <Route
             path="/streets"
-            element={<AnimatedPage><Streets openModal={openModal} /></AnimatedPage>}
+            element={
+              <AnimatedPage>
+                <Streets
+                  openModal={openModal}
+                  images={images}
+                  setImages={setImages}
+                />
+              </AnimatedPage>
+            }
           />
           <Route
             path="/portraits"
-            element={<AnimatedPage><Portraits openModal={openModal} /></AnimatedPage>}
+            element={
+              <AnimatedPage>
+                <Portraits
+                  openModal={openModal}
+                  images={images}
+                  setImages={setImages}
+                />
+              </AnimatedPage>
+            }
           />
           <Route
             path="/about"
-            element={<AnimatedPage><About /></AnimatedPage>}
+            element={
+              <AnimatedPage>
+                <About />
+              </AnimatedPage>
+            }
           />
         </Routes>
       </AnimatePresence>
@@ -227,6 +289,8 @@ function App() {
         isOpen={modal.isOpen}
         onClose={closeModal}
         imageUrl={modal.imageUrl}
+        showNextImage={showNextImage}
+        showPrevImage={showPrevImage}
       />
     </Router>
   );
